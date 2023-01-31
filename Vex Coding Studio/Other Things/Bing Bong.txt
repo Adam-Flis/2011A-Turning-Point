@@ -1,0 +1,156 @@
+//--------------------------------------------// Autonomous Selection Voids
+
+int autonomousmode = 1;
+
+void autonomousSelectionController(){
+    Brain.Screen.clearScreen();
+    Controller1.Screen.clearScreen();
+    while (Controller1.ButtonX.pressing() == false){
+        if (Controller1.ButtonA.pressing() == true){
+            autonomousmode++;
+            while(Controller1.ButtonA.pressing() == true){task::sleep(10);}}
+        if (Controller1.ButtonY.pressing() == true){
+            autonomousmode--;
+            while(Controller1.ButtonY.pressing() == true){task::sleep(10);}}
+        if (autonomousmode == 1){
+            Controller1.Screen.setCursor(4,0);
+            Controller1.Screen.print("Red Front");}
+        else if (autonomousmode == 2){
+            Controller1.Screen.setCursor(4,0);
+            Controller1.Screen.print("Red Back");}
+        else if (autonomousmode == 3){
+            Controller1.Screen.setCursor(4,0);
+            Controller1.Screen.print("Blue Front");}
+        else if (autonomousmode == 4){
+            Controller1.Screen.setCursor(4,0);
+            Controller1.Screen.print("Blue Back");}
+        if (autonomousmode < 1){
+            autonomousmode = 4;}
+        else if (autonomousmode > 4){
+            autonomousmode = 1;}
+        task::sleep(10);}
+    Brain.Screen.clearScreen();}
+
+void autonomousSelectionBrain()
+{
+    Brain.Screen.clearScreen();
+    Brain.Screen.setCursor(100,136);
+    Brain.Screen.drawCircle(100,136,40,color::blue);
+    Brain.Screen.setCursor(200,136);
+    Brain.Screen.drawCircle(200,136,40,color::white);
+    Brain.Screen.setCursor(300,136);
+    Brain.Screen.drawCircle(300,136,40,color::blue);
+    while ((Brain.Screen.xPosition() < 160 || Brain.Screen.xPosition() > 240) && (Brain.Screen.yPosition() > 96 && Brain.Screen.yPosition() < 176))
+    {
+        if (Brain.Screen.xPosition() < 60 && Brain.Screen.xPosition() > 140)
+        {
+            autonomousmode--;
+            while(Brain.Screen.xPosition() < 60 && Brain.Screen.xPosition() > 140){task::sleep(10);}
+        }
+        if (Brain.Screen.xPosition() > 260 && Brain.Screen.xPosition() < 340)
+        {
+            autonomousmode++;
+            while(Brain.Screen.xPosition() > 260 && Brain.Screen.xPosition() < 340){task::sleep(10);}
+        }
+        if (autonomousmode == 1)
+        {
+            Brain.Screen.clearLine();
+            Brain.Screen.printAt(20,20,"Red Front");
+        }
+        else if (autonomousmode == 2)
+        {
+            Brain.Screen.clearLine();
+            Brain.Screen.printAt(20,20,"Red Back");
+        }
+        else if (autonomousmode == 3)
+        {
+            Brain.Screen.clearLine();
+            Brain.Screen.printAt(20,20,"Blue Front");
+        }
+        else if (autonomousmode == 4)
+        {
+            Brain.Screen.clearLine();
+            Brain.Screen.printAt(20,20,"Blue Back");
+        }
+        if (autonomousmode < 1)
+        {
+            autonomousmode = 4;
+        }
+        else if (autonomousmode > 4)
+        {
+            autonomousmode = 1;
+        }
+        task::sleep(10);
+    }
+    Brain.Screen.clearScreen();
+}
+
+//--------------------------------------------//
+
+
+//--------------------------------------------// Brain Voids
+
+void robotstartup()
+{
+    Brain.Screen.clearScreen();
+    Brain.Screen.print("Hello");
+    Brain.Screen.clearScreen();
+    Brain.Screen.printAt(1,1,"Team 2011A");
+    Brain.Screen.printAt(2,1,"Brecksville Broadview Hts Ohio");
+    Brain.Screen.printAt(3,1,"Established 2011");
+    Brain.Screen.printAt(4,1,"Instagram:");
+    Brain.Screen.printAt(5,1,"team2011a");
+    task::sleep(2000);
+    Brain.Screen.clearScreen();
+}
+
+    
+//--------------------------------------------//
+
+
+
+
+
+/*if (autonomousmode == 1) // Front Red
+    {
+        {
+            BI.spin(directionType::fwd);
+            //driveforwards();
+            //drivebackwards();
+            BI.stop();
+            //turnright();
+            //launchballs();
+        }
+    }
+    
+  	//-------------------------------------------------------------------------//  
+    
+    else if (autonomousmode == 2) // Back Red
+    {
+        {
+            drivebackwards(100,2000);
+        }
+    }
+    
+    //-------------------------------------------------------------------------// 
+    
+    else if (autonomousmode == 3) // Front Blue
+    {
+        {
+            driveforwards(100,2000);
+        }
+    }
+    
+    //-------------------------------------------------------------------------// 
+    
+    else if (autonomousmode == 4) // Back Blue
+    {
+        {
+            drivebackwards(100,2000);
+        }
+    }
+    
+    //-------------------------------------------------------------------------// 
+    
+    Brain.Screen.clearScreen();
+    */
